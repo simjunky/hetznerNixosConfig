@@ -89,7 +89,8 @@
 		enable = true;
 		# Open ports in the firewall.
 		# openssh on 22
-		allowedTCPPorts = [ 22 ];
+		# http and https on 80, 443
+		allowedTCPPorts = [ 22 80 443 ];
 	};
 
 	system.stateVersion = "24.11";
