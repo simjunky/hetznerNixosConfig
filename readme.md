@@ -7,7 +7,7 @@ Using `worldpower` keyfile to login to user `patrick`.
 
 ## Installation on new VPS
 
-Use `nixos-anywhere`:
+Use `nixos-anywhere` (see [nix-community](https://nix-community.github.io/nixos-anywhere/quickstart.html))
 1. Create the lock file using `nix flake lock`.
 2. Make sure to have passwordless root access, so set up a ssh-keyfile and change the ssh config file.
 3. use
