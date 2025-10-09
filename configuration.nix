@@ -84,6 +84,20 @@
 		};
 	};
 
+	# caddy web server & reverse proxy using automatic HTTPS
+	services.caddy = {
+		enable = true;
+		virtualHosts."localhost".extraConfig = ''
+			respond "Hello Local-World!"
+		'';
+		virtualHosts."kraftbaer.de".extraConfig = ''
+			respond "Hello Kraftbaer-World!"
+		'';
+#		virtualHosts."adguard.worldpower.net".extraConfig = ''
+#			reverse_proxy https://127.0.0.1:3000
+#		'';
+	};
+
 	# Firewall
 	networking.firewall = {
 		enable = true;
