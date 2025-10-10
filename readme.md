@@ -14,3 +14,8 @@ Use `nixos-anywhere` (see [nix-community](https://nix-community.github.io/nixos-
 ```
 nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ~/hetznerwpvpsNixosConfig/hardware-configuration.nix --flake ~/hetznerwpvpsNixosConfig#hetznerwpvps --target-host root@hetznerwpvps
 ```
+
+## Serving Static Websites
+
+`nginx` using `ACME` certificates host the websites.
+These are located in a folder in `/var/www` which has been modified to be usable by me (`chown patrick:users foldername`). Then the folder is sym-linked to my home directory using `ln -s /var/www/websitefoldername ~/websitefoldername`. There i can then create/clone my `git` repository containing the website files. This way `nginx` can access them (unlike in my home directory) and i can modify and `git clone` and all these things.

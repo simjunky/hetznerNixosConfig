@@ -62,10 +62,12 @@
 		pkgs.fd # better find tool for CLI.
 		pkgs.fzf # Fuzzy Find Command Line Tool.
 		pkgs.htop # Process and CPU/MEM usage overview panel.
+		pkgs.kitty # terminal
 		pkgs.lf # File manager for Command Line.
 		pkgs.micro # nano-like text editor for the CLI
 		pkgs.tmux # Terminal multiplexer for command line.
 		pkgs.tree # ls but as a tree.
+		pkgs.unixtools.net-tools # netstat, ipconfig and other tools.
 	];
 
 	programs.git = {
@@ -84,18 +86,29 @@
 		};
 	};
 
-	# caddy web server & reverse proxy using automatic HTTPS
-	services.caddy = {
+	services.nginx = {
 		enable = true;
-		virtualHosts."localhost".extraConfig = ''
-			respond "Hello Local-World!"
-		'';
-		virtualHosts."kraftbaer.de".extraConfig = ''
-			respond "Hello Kraftbaer-World!"
-		'';
-#		virtualHosts."adguard.worldpower.net".extraConfig = ''
-#			reverse_proxy https://127.0.0.1:3000
-#		'';
+		virtualHosts.localhost = {
+			locations."/" = {
+				return = "200 '<html><body>It works locally ;-)</body></html>'";
+				extraConfig = ''
+					default_type text/html;
+				'';
+			};
+		};
+		virtualHosts."kraftbear.de" = {
+			enableACME = true;
+			forceSSL = true;
+			root = "/var/www/kraftbear.de/WebsiteKraftbear";
+		};
+	};
+	
+	security.acme = {
+		# Accept the CA’s terms of service. The default provider is Let’s Encrypt, you can find their ToS at https://letsencrypt.org/repository/. 
+		acceptTerms = true;
+		# Optional: You can configure the email address used with Let's Encrypt.
+		# This way you get renewal reminders (automated by NixOS) as well as expiration emails.
+		defaults.email = "patrick.martin.2@outlook.de";
 	};
 
 	# Firewall
