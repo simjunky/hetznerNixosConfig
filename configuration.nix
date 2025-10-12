@@ -88,6 +88,13 @@
 
 	services.nginx = {
 		enable = true;
+
+		# Use recommended settings
+		recommendedGzipSettings = true;
+		recommendedOptimisation = true;
+		recommendedProxySettings = true;
+		recommendedTlsSettings = true;
+
 		virtualHosts.localhost = {
 			locations."/" = {
 				return = "200 '<html><body>It works locally ;-)</body></html>'";
@@ -96,13 +103,31 @@
 				'';
 			};
 		};
+
 		virtualHosts."kraftbear.de" = {
 			enableACME = true;
 			forceSSL = true;
-			root = "/var/www/kraftbear.de/WebsiteKraftbear";
+			locations."/" = {
+				root = "/var/www/kraftbear.de/WebsiteKraftbear/served";
+			};
 		};
+
+		# Some base hardening (see nixos nginx wiki)
+		appendHttpConfig = ''
+			# Enable CSP for your services.
+			add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
+
+			# Minimize information leaked to other domains
+			add_header 'Referrer-Policy' 'origin-when-cross-origin';
+
+			# Disable embedding as a frame
+			add_header X-Frame-Options DENY;
+
+			# Prevent injection of code in other mime types (XSS Attacks)
+			add_header X-Content-Type-Options nosniff;
+		'';
 	};
-	
+
 	security.acme = {
 		# Accept the CA’s terms of service. The default provider is Let’s Encrypt, you can find their ToS at https://letsencrypt.org/repository/. 
 		acceptTerms = true;
