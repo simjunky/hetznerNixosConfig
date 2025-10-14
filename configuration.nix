@@ -112,6 +112,14 @@
 			};
 		};
 
+		virtualHosts."carpeoptimum.de" = {
+			enableACME = true;
+			forceSSL = true;
+			locations."/" = {
+				root = "/var/www/carpeoptimum.de/WebsiteCarpeoptimum/served";
+			};
+		};
+
 		# Some base hardening (see nixos nginx wiki)
 		appendHttpConfig = ''
 			# Enable CSP for your services.
