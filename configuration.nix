@@ -118,6 +118,10 @@
 			locations."/" = {
 				root = "/var/www/carpeoptimum.de/WebsiteCarpeoptimum/served";
 			};
+			extraConfig = ''
+				charset utf-8;
+				charset_types text/html text/plain text/css application/javascript application/json;
+			'';
 		};
 
 		# Some base hardening (see nixos nginx wiki)
