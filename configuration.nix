@@ -104,14 +104,6 @@
 			};
 		};
 
-		virtualHosts."kraftbear.de" = {
-			enableACME = true;
-			forceSSL = true;
-			locations."/" = {
-				root = "/var/www/kraftbear.de/WebsiteKraftbear/served";
-			};
-		};
-
 		virtualHosts."carpeoptimum.de" = {
 			enableACME = true;
 			forceSSL = true;
@@ -122,6 +114,22 @@
 				charset utf-8;
 				charset_types text/html text/plain text/css application/javascript application/json;
 			'';
+		};
+
+		virtualHosts."ilikewater.de" = {
+			enableACME = true;
+			forceSSL = true;
+			locations."/" = {
+				root = "/var/www/ilikewater.de/WebsiteIlikewater/served";
+			};
+		};
+
+		virtualHosts."kraftbear.de" = {
+			enableACME = true;
+			forceSSL = true;
+			locations."/" = {
+				root = "/var/www/kraftbear.de/WebsiteKraftbear/served";
+			};
 		};
 
 		# Some base hardening (see nixos nginx wiki)
