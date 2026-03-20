@@ -104,6 +104,14 @@
 			};
 		};
 
+		virtualHosts."allesmartin.de" = {
+			enableACME = true;
+			forceSSL = true;
+			locations."/" = {
+				root = "/var/www/allesmartin.de/personalwebsite/served";
+			};
+		};
+
 		virtualHosts."carpeoptimum.de" = {
 			enableACME = true;
 			forceSSL = true;
@@ -132,11 +140,14 @@
 			};
 		};
 
-		virtualHosts."allesmartin.de" = {
+		virtualHosts."lognormal.de" = {
 			enableACME = true;
 			forceSSL = true;
 			locations."/" = {
-				root = "/var/www/allesmartin.de/personalwebsite/served";
+				return = "200 '<html><body>Come back another time :-)</body></html>'";
+				extraConfig = ''
+					default_type text/html;
+				'';
 			};
 		};
 
