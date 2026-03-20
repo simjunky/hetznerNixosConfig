@@ -132,6 +132,14 @@
 			};
 		};
 
+		virtualHosts."allesmartin.de" = {
+			enableACME = true;
+			forceSSL = true;
+			locations."/" = {
+				root = "/var/www/allesmartin.de/personalwebsite/served";
+			};
+		};
+
 		# Some base hardening (see nixos nginx wiki)
 		appendHttpConfig = ''
 			# Enable CSP for your services.
