@@ -30,6 +30,14 @@
 
 	networking.hostName = "hetznerwpvps"; # Define your hostname.
 
+	system.autoUpgrade = {
+		enable = true;
+		flake = "/etc/nixos/hetznerwpvps"; # Note: symlink from /etc/nixos needed to ~/hetznerwpvps (use sudo ln -s <dest> <ori>)
+		allowReboot = true;
+		dates = "daily";
+		randomizedDelaySec = "120min";
+	};
+
 	# Enable the OpenSSH daemon.
 	services.openssh = {
 		enable = true;
