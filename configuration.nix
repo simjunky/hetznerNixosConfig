@@ -34,16 +34,20 @@
 	services.openssh = {
 		enable = true;
 		settings = {
-			PermitRootLogin = "no"; # No login as root
+			PermitRootLogin = "no"; # No login as root.
 			PasswordAuthentication = false; # No login via password, only via ssh keypairs. See user.
 			KbdInteractiveAuthentication = false; # Also no other method of Authentication (PW Auth is only one way to do it)
+			X11Forwarding = false; # No X11 GUI forwarding via ssh -X.
+			AllowAgentForwarding = false; # No reauthentication from this machine via local ssh keys onto another.
+			AllowTcpForwarding = "no"; # TCP forwarding allows tunneling connections through SSH.
+			LogLevel = "VERBOSE";
 		};
 	};
 
 	# Define a user account. Don't forget to set a password with ‘passwd’.
 	users.users.patrick = {
 		isNormalUser = true;
-		initialPassword = "initpw"; # Change this at first login!
+		initialPassword = null; # Default, change this at first login!
 		description = "patrick";
 		extraGroups = [ "networkmanager" "wheel" "backup" ];
 		# Preset public keys for login via ssh
