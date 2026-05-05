@@ -98,6 +98,25 @@
 		};
 	};
 
+	services.fail2ban = {
+		enable = true;
+		banaction = "nftables-multiport"; # recommended, uses systemd journal instead of log files
+		extraConfig = ''
+				[DEFAULT]
+				backend = systemd
+				bantime.increment = true
+				bantime.factor = 2
+			''; # use systemd journals and penalize repeat offenders
+		jails.sshd = {
+			enabled = true;
+			settings = {
+				maxretry = 3;
+				findtime = "10m";
+				bantime = "24h"; # longer bantime since vps.
+			};
+		};
+	};
+
 	services.nginx = {
 		enable = true;
 
