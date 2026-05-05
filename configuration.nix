@@ -38,6 +38,9 @@
 		randomizedDelaySec = "120min";
 	};
 
+	time.timeZone = "Europe/Berlin";
+	i18n.defaultLocale = "en_US.UTF-8";
+
 	# Enable the OpenSSH daemon.
 	services.openssh = {
 		enable = true;
@@ -74,7 +77,6 @@
 		pkgs.fd # better find tool for CLI.
 		pkgs.fzf # Fuzzy Find Command Line Tool.
 		pkgs.htop # Process and CPU/MEM usage overview panel.
-		pkgs.kitty # terminal
 		pkgs.lf # File manager for Command Line.
 		pkgs.micro # nano-like text editor for the CLI
 		pkgs.tmux # Terminal multiplexer for command line.
