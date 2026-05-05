@@ -91,24 +91,17 @@
 				name = "Patrick Martin";
 				email = "patrick.martin.2@outlook.de";
 			};
-#			safe = {
-#				directory = [
-#					"/etc/nixos"
-#					"/etc/nixos/.git"
-#				];
-#			};
 		};
 	};
 
 	services.fail2ban = {
 		enable = true;
-		banaction = "nftables-multiport"; # recommended, uses systemd journal instead of log files
-		extraConfig = ''
-				[DEFAULT]
-				backend = systemd
-				bantime.increment = true
-				bantime.factor = 2
-			''; # use systemd journals and penalize repeat offenders
+		bantime = "24h"; # Ban IPs for one day on the first ban.
+		bantime-increment = {
+			enable = true;
+			overalljails = true;
+			multipliers = "2";
+		};
 		jails.sshd = {
 			enabled = true;
 			settings = {
