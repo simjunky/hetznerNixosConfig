@@ -77,6 +77,7 @@
 		pkgs.fd # better find tool for CLI.
 		pkgs.fzf # Fuzzy Find Command Line Tool.
 		pkgs.htop # Process and CPU/MEM usage overview panel.
+		pkgs.kitty.terminfo # helps when connecting to this server via ssh from a kitty terminal.
 		pkgs.lf # File manager for Command Line.
 		pkgs.micro # nano-like text editor for the CLI
 		pkgs.tmux # Terminal multiplexer for command line.
