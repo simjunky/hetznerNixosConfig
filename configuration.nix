@@ -182,7 +182,7 @@
 			enableACME = true;
 			forceSSL = true;
 			locations."/" = {
-				return = "200 '<html><body>Jup, thats me. Come back another time, I'm not done yet!</body></html>'";
+				return = "200 '<html><body>Jup, thats me. Come back another time - not done yet!</body></html>'";
 				extraConfig = ''
 					default_type text/html;
 				'';
