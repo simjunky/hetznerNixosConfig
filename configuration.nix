@@ -178,6 +178,17 @@
 			};
 		};
 
+		virtualHosts."patrickmartin.me" = {
+			enableACME = true;
+			forceSSL = true;
+			locations."/" = {
+				return = "200 '<html><body>Jup, thats me. Come back another time, I'm not done yet!</body></html>'";
+				extraConfig = ''
+					default_type text/html;
+				'';
+			};
+		};
+
 		# Some base hardening (see nixos nginx wiki)
 		appendHttpConfig = ''
 			# Enable CSP for your services.
