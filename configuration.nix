@@ -134,9 +134,7 @@
 		virtualHosts."allesmartin.de" = {
 			enableACME = true;
 			forceSSL = true;
-			locations."/" = {
-				root = "/var/www/allesmartin.de/personalwebsite/served";
-			};
+			globalRedirect = "patrickmartin.me";
 		};
 
 		virtualHosts."carpeoptimum.de" = {
@@ -178,14 +176,17 @@
 			};
 		};
 
+		virtualHosts."martinpatrick.de" = {
+			enableACME = true;
+			forceSSL = true;
+			globalRedirect = "patrickmartin.me";
+		};
+
 		virtualHosts."patrickmartin.me" = {
 			enableACME = true;
 			forceSSL = true;
 			locations."/" = {
-				return = "200 '<html><body>Jup, thats me. Come back another time - not done yet!</body></html>'";
-				extraConfig = ''
-					default_type text/html;
-				'';
+				root = "/var/www/patrickmartin.me/profilewebsite/served";
 			};
 		};
 
