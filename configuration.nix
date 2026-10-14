@@ -185,12 +185,24 @@
 		virtualHosts."patrickmartin.me" = {
 			enableACME = true;
 			forceSSL = true;
-			locations."/" = {
-				root = "/var/www/patrickmartin.me/profilewebsite/served";
+			locations = {
+				"/" = {
+					root = "/var/www/patrickmartin.me/profilewebsite/served";
+					extraConfig = ''
+						try_files $uri $uri/ =404;
+					'';
+				};
+				"= /404/index.html" = {
+					root = "/var/www/patrickmartin.me/profilewebsite/served";
+					extraConfig = ''
+						internal;
+					'';
+				};
 			};
 			extraConfig = ''
 				charset utf-8;
 				charset_types text/html text/plain text/css application/javascript application/json;
+				error_page 404 /404/index.html;
 			'';
 		};
 
